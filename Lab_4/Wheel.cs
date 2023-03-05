@@ -4,13 +4,13 @@ class Wheel
 {
     private BicycleImages _images = new BicycleImages();
     private int _index = 0;  //(i = 0 -- 0 wheels), (i = 1 -- only left wheel), (i = 2 -- only right wheel), (i = 3 -- all wheels)
-    
+
     public int Index
     {
         get => _index;
     }
 
-    public void AddWheels(char wheel)
+    public void InsertWheels(char wheel)
     {
         if (wheel == 'r')
         {
@@ -59,48 +59,48 @@ class Wheel
             Console.WriteLine("Error");
         }
     }
-    public void RemoveWheels(char wheel)
+    public void RemoveWheels(char wheel)    //(i = 0 -- 0 wheels), (i = 1 -- only left wheel), (i = 2 -- only right wheel), (i = 3 -- all wheels)
     {
         if (wheel == 'r')
         {
             if (_index == 0)
             {
-                Console.WriteLine(_images.DrawRightWheelBicycle());
-                _index = 2;
+                Console.WriteLine("There is already zero wheels!");
             }
             else if (_index == 1)
             {
-                Console.WriteLine(_images.DrawFullBicycle());
-                _index = 3;
+                Console.WriteLine("There is already no right wheel!");
             }
             else if (_index == 2)
             {
-                Console.WriteLine("Right wheel is already stands");
+                Console.WriteLine(_images.DrawNullWheelBicycle());
+                _index = 0;
             }
             else if (_index == 3)
             {
-                Console.WriteLine("All wheels are already stands");
+                Console.WriteLine(_images.DrawLeftWheelBicycle());
+                _index = 1;
             }
         }
         else if (wheel == 'l')
         {
             if (_index == 0)
             {
-                Console.WriteLine(_images.DrawLeftWheelBicycle());
-                _index = 1;
+                Console.WriteLine("There is already zero wheels!");
             }
             else if (_index == 1)
             {
-                Console.WriteLine("Left wheel is already stands");
+                Console.WriteLine(_images.DrawNullWheelBicycle());
+                _index = 0;
             }
             else if (_index == 2)
             {
-                Console.WriteLine(_images.DrawFullBicycle());
-                _index = 3;
+                Console.WriteLine("There is already no left wheel!");
             }
             else if (_index == 3)
             {
-                Console.WriteLine("All wheels are already stands");
+                Console.WriteLine(_images.DrawRightWheelBicycle());
+                _index = 2;
             }
         }
         else

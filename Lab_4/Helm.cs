@@ -2,19 +2,46 @@
 
 class Helm
 {
+    private int _index;    //i = 0 -- center, i = -1 -- left, i = 1 -- right
     public void Rotate(char rotationSide)
     {
-        switch (rotationSide)
+        if (rotationSide == 'r')
         {
-            case 'r':
-                Console.WriteLine("helm returned to right!");
-                break;
-            case 'l':
-                Console.WriteLine("helm returned to left!");
-                break;
-            default:
-                Console.WriteLine("ERROR!");
-                break;
+            switch (_index)
+            {
+                case 0:
+                    _index = 1;
+                    Console.WriteLine("Your helm rotated to right!");
+                    break;
+                case 1:
+                    Console.WriteLine("Your helm is already rotated to right!");
+                    break;
+                case -1:
+                    _index = 0;
+                    Console.WriteLine("Your helm rotated to center!");
+                    break;
+            }
+        }
+        else if (rotationSide == 'l')
+        {
+            switch (_index)
+            {
+                case 0:
+                    _index = -1;
+                    Console.WriteLine("Your helm rotated to left!");
+                    break;
+                case 1:
+                    _index = 0;
+                    Console.WriteLine("Your helm rotated to center!");
+                    break;
+                case -1:
+                    Console.WriteLine("Your helm is already rotated to left!");
+                    break;
+            }
+        }
+        else
+        {
+            Console.WriteLine("ERROR!");
         }
     }
     //---------------------------OVERRIDE----------------------------------
