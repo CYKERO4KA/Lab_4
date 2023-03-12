@@ -1,32 +1,44 @@
 ﻿namespace Lab_4;
-
 class Pedals
 {
     private int _speed;
-        
-    public void IncreaseSpeed(int speed)
+    public string Checker { get; set; }
+    
+    public int Speed
     {
-        _speed += speed;
-        Console.WriteLine($"Speed was increased to {_speed} km/h");
+        get => _speed;
     }
-    public void DecreaseSpeed(int speed)
+    public int IncreaseSpeed(int speed)
     {
-        _speed -= speed;
-        Console.WriteLine($"Speed was decreased to {_speed} km/h");
+        if(_speed + speed >= 0)
+            return _speed += speed;
+        return 0;
+        
+    }
+    public int DecreaseSpeed(int speed)
+    {
+        if(_speed - speed >= 0)
+            return _speed -= speed;
+        return 0;
     }
     //---------------------------OVERRIDE----------------------------------
-    public override string ToString()
+    public override string? ToString()
     {
-        return "It's method ToString in class Pedals";
+        if (string.IsNullOrEmpty(Checker))
+            return base.ToString();
+        return Checker;
     }
 
     public override bool Equals(object? obj)
     {
+        if (obj is Pedals pedals)
+            return Checker == pedals.Checker;
         return false;
     }
 
     public override int GetHashCode()
     {
-        return 5;
+        if (Checker != null) return Checker.GetHashCode();
+        return 0;
     }
 }

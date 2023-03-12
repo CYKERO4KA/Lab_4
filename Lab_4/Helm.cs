@@ -3,6 +3,7 @@
 class Helm
 {
     private int _index;    //i = 0 -- center, i = -1 -- left, i = 1 -- right
+    public string Checker { get; set; }
     public void Rotate(char rotationSide)
     {
         if (rotationSide == 'r')
@@ -41,22 +42,27 @@ class Helm
         }
         else
         {
-            Console.WriteLine("ERROR!");
+            Console.WriteLine("Incorrect side!");
         }
     }
     //---------------------------OVERRIDE----------------------------------
-    public override string ToString()
+    public override string? ToString()
     {
-        return "It's method ToString in class Helm";
+        if (string.IsNullOrEmpty(Checker))
+            return base.ToString();
+        return Checker;
     }
 
     public override bool Equals(object? obj)
     {
-        return true;
+        if (obj is Helm helm)
+            return Checker == helm.Checker;
+        return false;
     }
 
     public override int GetHashCode()
     {
-        return 4;
+        if (Checker != null) return Checker.GetHashCode();
+        return 0;
     }
 }

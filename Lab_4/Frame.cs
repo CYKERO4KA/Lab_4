@@ -2,6 +2,8 @@
 
 class Frame
 {
+    public string Checker { get; set; }
+    
     public void ChangeColor(string frame, ConsoleColor color)
     {
         Console.ForegroundColor = color;
@@ -14,18 +16,23 @@ class Frame
         
         
     //---------------------------OVERRIDE----------------------------------
-    public override string ToString()
+    public override string? ToString()
     {
-        return "It's method ToString in class Frame";
+        if (string.IsNullOrEmpty(Checker))
+            return base.ToString();
+        return Checker;
     }
 
     public override bool Equals(object? obj)
     {
-        return true;
+        if (obj is Frame frame)
+            return Checker == frame.Checker;
+        return false;
     }
 
     public override int GetHashCode()
     {
-        return 3;
+        if (Checker != null) return Checker.GetHashCode();
+        return 0;
     }
 }
